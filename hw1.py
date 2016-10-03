@@ -1,4 +1,4 @@
-#  Name:
+#  Name: Kevin Choi
 #  Email:
 
 # Q1.
@@ -6,23 +6,21 @@
 from operator import add, sub
 def a_plus_abs_b(a, b):
     """Return a+abs(b), but without calling abs.
-
     >>> a_plus_abs_b(2, 3)
     5
     >>> a_plus_abs_b(2, -3)
     5
     """
     if b < 0:
-        op = _____
+        op = sub
     else:
-        op = _____
-    return op(a, b)
+        op = add
+    return op(a,b)
 
 # Q2.
 
 def two_of_three(a, b, c):
     """Return x*x + y*y, where x and y are the two largest of a, b, c.
-
     >>> two_of_three(1, 2, 3)
     13
     >>> two_of_three(5, 3, 1)
@@ -32,7 +30,15 @@ def two_of_three(a, b, c):
     >>> two_of_three(5, 5, 5)
     50
     """
-    "*** YOUR CODE HERE ***"
+    if a and b > c:
+        x, y = a, b
+    elif b and c > a:
+        x, y = b, c
+    else:
+        x, y = a, c
+
+    return x * x + y * y
+
 
 # Q3.
 
@@ -64,10 +70,11 @@ def f():
 
 # Q4.
 
+
 from operator import mod
+
 def hailstone(n):
     """Print the hailstone sequence starting at n and return its length.
-
     >>> a = hailstone(10)  # Seven elements are 10, 5, 16, 8, 4, 2, 1
     10
     5
@@ -79,14 +86,13 @@ def hailstone(n):
     >>> a
     7
     """
-    seq = [n]
+    t = [n]
+    count = 1
     while n > 1:
         if mod(n,2) == 0:
             n = n/2
         else:
-            n = n*3 + 1
-        seq = seq + [n,]
-    print('The elements of the sequence are', seq, 'and the length is', len(seq))
-
-
-
+            n = n * 3 + 1
+        t = t + [n, ]
+        count = count + 1
+    return t, count
