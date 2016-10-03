@@ -30,6 +30,10 @@ class VendingMachine(object):
     'Machine is out of stock. Here is your $15.'
     """
     "*** YOUR CODE HERE ***"
+    def __init__(product, product_price):
+        product.stock = 0
+        product.price = product_price
+    def restock
 
 # Q2.
 
