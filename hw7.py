@@ -241,6 +241,25 @@ def rlist_adjoin(s, v):
     """Assuming S is an Rlist in sorted order, a new Rlist that contains all the original
     values, plus V (if not already present) in sorted order."""
     "*** YOUR CODE HERE ***"
+    if v < s[0]:
+        return Rlist(v, s)
+    elif v == s[0]:
+        return s
+    """Search for the index where v would fit in. Create new Rlist from index 0 to the v-th index. Add s.rest"""
+
+    def search_index(s, v):
+        index = 1:
+        while v <= s[index]:
+            index = index + 1
+        return index + 1
+
+    index = search_index(s,v)
+    
+
+
+
+
+
 
 def drlist_adjoin(s, v):
     """Destructively add V to the appropriate place in sorted Rlist S, if it is not already
