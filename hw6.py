@@ -30,10 +30,33 @@ class VendingMachine(object):
     'Machine is out of stock. Here is your $15.'
     """
     "*** YOUR CODE HERE ***"
-    def __init__(product, product_price):
-        product.stock = 0
-        product.price = product_price
-    def restock
+    def __init__(self, name, product_price):
+        self.stock = 0
+        self.price = product_price
+        self.balance = 0
+        self.change = 0
+        self.name = name
+    def restock(self, amount):
+        self.stock = self.stock + amount
+        print('Current', self.name, 'stock:',self.stock)
+    def deposit(self, money):
+        if self.stock > 0:
+            self.balance = self.balance + money
+            print('Current balance: $',self.balance)
+        else:
+            print('Machine is out of stock. Here is your $',money,'.')
+    def vend(self):
+        if self.stock > 0:
+            if self.balance >= self.price:
+                self.stock = self.stock - 1
+                self.change = self.balance - self.price
+                self.balance = 0
+                print('Here is your', self.name, 'and $', self.change, 'change.')
+            elif self.balance < self.price:
+                print('You must deposit $',self.price - self.balance, 'more.')
+        elif self.stock == 0:
+            print('Machine is out of stock.')
+
 
 # Q2.
 
@@ -58,6 +81,29 @@ class MissManners(object):
     'Here is your teaspoon and $10 change.'
     """
     "*** YOUR CODE HERE ***"
+    def __init__(self, func):
+        self.function = func
+    def ask(self, *args):
+        please = ['please']
+        function_input = None
+        for arg in args:
+            if type(arg) == str:
+                word_list = arg.split()
+            else:
+                function_input = arg
+        if 'please' in word_list:
+            message = ' '.join([i for i in word_list if i not in please])
+            if hasattr(self.function, message):
+                if function_input == None:
+                    return getattr(self.function, message)()
+                else:
+                    return getattr(self.function, message)(function_input)
+            else:
+                print('Thanks for asking, but I do not know how to', message)
+        else:
+            print('You must learn to say please first.')
+
+
 
 # Q3.
 
