@@ -254,6 +254,14 @@ def drlist_adjoin(s, v):
     """Destructively add V to the appropriate place in sorted Rlist S, if it is not already
     present, returning the modified Rlist."""
     "*** YOUR CODE HERE ***"
+    if v < s.first or s is Rlist.empty:
+        return Rlist(v, s)
+    elif v == s.first:
+        return s
+    else:
+        s.rest = drlist_adjoin(s.rest, v)
+        return s
+
 
 def rlist_intersect(s1, s2):
     """Assuming S1 and S2 are two Rlists in sorted order, return a new Rlist in
